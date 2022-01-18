@@ -24,15 +24,15 @@ export default function TextForm(props) {
         <div className='container' style = {{ color:props.mode === 'dark' ? 'white' : '#042743' }}>
             <h1>{props.heading} </h1>
             <div className="mb-3">
-                    <textarea className="form-control" id="myBox" value={text} style={{ backgroundColor: props.mode === 'dark' ? 'grey' : 'white', color: props.mode === 'dark' ? 'white' : '#042743' }} rows="8" onChange={handleOnChange}></textarea>
+                    <textarea className="form-control" id="myBox" value={text} style={{ backgroundColor: props.mode === 'dark' ? '#13466e' : 'white', color: props.mode === 'dark' ? 'white' : '#042743' }} rows="8" onChange={handleOnChange}></textarea>
             </div>
-            <button className="btn btn-primary" onClick={handleUPClick}>CONVERT TO UPPERCASE</button>
+            <button disabled={text.length === 0} className="btn btn-primary mx-2 my-2" onClick={handleUPClick}>CONVERT TO UPPERCASE</button>
         </div>
 
             <div className="container my-3" style={{ color: props.mode === 'dark' ? 'white' : '#042743' }}>
             <h1>Your Text Summary</h1>
-            <p>{text.split(" ").length} word, {text.length} characters</p>
-            <p>{0.008 * text.split(" ").length} minutes read</p>
+            <p>{text.split(" ").filter((element)=>{return element.length!==0}).length} word, {text.length} characters</p>
+                <p>{0.008 * text.split(" ").filter((element) => { return element.length !== 0 }).length} minutes read</p>
             <h2>PREVIEW TO READ</h2>
             <p>{text.length>0?text:"Enter Your TExt to Preview"}</p>
         </div>
